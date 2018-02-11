@@ -10,7 +10,20 @@ a:link{
 	font-size:30px;
 	font-weight:bold;
 	font-style:italic;
+	
 }
 header{
-	text-align:right;
+	top:0px;
+	position:absolute;
+	left:10px;
+}
+div.right{
+	position:absolute;
+	left:1000px;
+	top:10px;
+}
+div.left{
+	top:150px;
+	position:absolute;
+	
 }
