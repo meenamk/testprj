@@ -9,8 +9,7 @@ a:link{
 	padding:40px;
 	font-size:30px;
 	font-weight:bold;
-	font-style:italic;
-	
+	font-style:italic;	
 }
 header{
 	top:0px;
@@ -24,6 +23,17 @@ div.right{
 }
 div.left{
 	top:150px;
+	position:absolute;	
+}
+p{
+	font-weight:bold;
+	font-style:italic;
+	font-size:22px;
 	position:absolute;
-	
+	top:150px;
+	left:350px;
+	color:ANTIQUEWHITE;
+	text-align:justify; 
+	line-height:1.5;
+	target:_self;
 }
