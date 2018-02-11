@@ -1,4 +1,16 @@
 @CHARSET "ISO-8859-1";
 body{
-	background-image:url("/DemoProject/images/Smarthome.jpg");
+	background-image:url("/DemoProject/images/powerstation.jpg");
+	background-size:1350px,400px;
+}
+a:link{
+	color:#ff6600;
+	text-decoration:none;
+	padding:40px;
+	font-size:30px;
+	font-weight:bold;
+	font-style:italic;
+}
+header{
+	text-align:right;
 }
