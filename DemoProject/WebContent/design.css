@@ -1,39 +1,93 @@
 @CHARSET "ISO-8859-1";
-body{
-	background-image:url("/DemoProject/images/powerstation.jpg");
-	background-size:1350px,400px;
+
+#backgroundvideo{
+	position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%
 }
-a:link{
-	color:#ff6600;
-	text-decoration:none;
-	padding:40px;
-	font-size:30px;
-	font-weight:bold;
-	font-style:italic;	
+.cancel{
+	background-color: orange;
 }
-header{
-	top:0px;
-	position:absolute;
-	left:10px;
+
+p {
+	top: 600px;
+	text-align: justify;
+	color: #EC8224;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 22px;
+	line-height: 2;
 }
-div.right{
-	position:absolute;
-	left:1000px;
-	top:10px;
+
+a:link {
+	margin-left: 100px;
+	color: #ff6600;
+	text-decoration: none;
+	font-size: 30px;
+	font-weight: bold;
+	font-style: italic;
 }
-div.left{
-	top:150px;
-	position:absolute;	
+.box{
+	
+	 background-color: orange;
+    width: 300px;
+    border: 25px ;
+    padding-top:25px;
+    margin-left: 500px;
+	
 }
-p{
-	font-weight:bold;
-	font-style:italic;
-	font-size:22px;
-	position:absolute;
-	top:150px;
-	left:350px;
-	color:ANTIQUEWHITE;
-	text-align:justify; 
-	line-height:1.5;
-	target:_self;
+.container {
+	width: 200px;
+	clear: both;
+	padding: 50px;
+	
+}
+
+.container input {
+	width: 100%;
+	clear: both;
+	text-align: center;
+	padding:10px;
+}
+
+.container2 {
+	width: 300px;
+	clear: both;
+	padding-top: 100px;
+	padding-left: 500px;
+	color: orange;
+	text-weight: bold;
+	font-style: italic;
+	font-size: 25px;
+}
+
+.container2 input {
+	width: 100%;
+	clear: both;
+	padding: 10px;
+}
+
+#button1 {
+	margin-left:10px;
+	height: 40px;
+	width: 70px;
+}
+
+#button2 {
+	margin-left: 50px;
+	height: 40px;
+	width: 70px;
+}
+#button3 {
+	margin-left: 550px;
+	height: 40px;
+	width: 80px;
+}
+
+#button4{
+	margin-left: 80px;
+	height: 40px;
+	width: 80px;
 }
