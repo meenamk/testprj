@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registering page</title>
+<link rel="stylesheet" type="text/css" href="design.css">
+<link rel="stylesheet" type="text/css" href="design2.css">
+<script type="text/javascript">
+function validatePassword(){
+var password=document.getElementById("pwd").value; 
+if(password.length<6 || password.length >8){
+		alert("please enter password more than 6 and less 8");
+		password.focus();
+		return false;
+}
+else{
+return true;
+}}
+function ConfirmPassword(){
+var password=document.getElementById("pwd").value; 
+ var confirmpwd=document.getElementById("conpwd").value;
+ if(password!==confirmpwd){
+ alert("Passwords don't match");
+ confirmpwd.focus();
+ return false;
+ }else{
+ return true;}}
+</script>
+</head>
+<body>
+<div id="top-links">
+
+<a href="index.html">Home</a>
+<a href="Login.html">Login</a></div>
+<img src="/DemoProject/images/energy.png" ></img>
+<form name="myform" action="UserData" method="post">
+
+<div class="box">
+<div class="container">
+<input type="text" name="user" placeholder="Your name" pattern="[A-Za-z]{1,}" required ><br><br>
+<input type="text" name="mobile"  placeholder="Mobile No" pattern="[7-9]{1}[0-9]{9}"required><br><br>
+<input type="password" name="password" placeholder="Password" id="pwd" required onblur="validatePassword()"><br><br>
+<input type="password" name="confirmpassword" placeholder="Confirm Password" id="conpwd" required onblur="ConfirmPassword()"><br><br>
+<table>
+<tr><td><input type=submit class="register" name="register" id="button3" value="Register"></td>
+<td><input type=button class="cancel" name="cancel" id="button4" value="cancel" onClick="document.location.href='index.html';"></td></tr></table></div>
+</div>
+
+</form>
+</body>
+</html>

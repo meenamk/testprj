@@ -1,18 +1,31 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Decentralized Energy in Smart Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="design2.css">
 <link rel="stylesheet" type="text/css" href="design.css">
+<title>Welcome Page</title>
 </head>
 <body>
 <div id="top-links">
-<a href="index.html">Home</a>
-	<a href="Login.html">Login</a>
-	<a href="Register.html">Register</a></div><br><br><br>
-	<img src="/DemoProject/images/energy.png" width=50% height=100 ></img>
+<a href="welcome2.jsp">Home</a>
+<a href="appliances.jsp">Customize Home</a>
+<a href="NewFile.jsp">Current Status</a>
+<a href="EnergyDamand.jsp">Energy Demand</a>
+<a href="DecentralizedEnergy.jsp">Decentralized Energy</a>
+<a href="Report.jsp">Report</a>
+<a href="index.html">Logout</a><br><br>
+<div class="getname">
+<%	
+ 	out.println("Welcome"+" "+session.getAttribute("username"));
+ 	session.setAttribute("username",session.getAttribute("username"));
+ 	%></div></div>
+<img src="/DemoProject/images/energy.png" width=50% height=100></img>
+<br><br>
 
-	<p>Smart grids offer better energy management for consumers as well
+<p>Smart grids offer better energy management for consumers as well
 		as energy companies using bi-directional communication and control.
 		With the advent of smart homes, energy companies can balance energy
 		supply and demand to a large extent using many sensors/meters
@@ -31,5 +44,6 @@
 		scheduling algorithm saves up to 30% energy cost. This paper is one of
 		the first to derive day-ahead schedules using real-world data from
 		multiple households.</p>
+
 </body>
 </html>

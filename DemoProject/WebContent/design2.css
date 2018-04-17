@@ -1,0 +1,41 @@
+@CHARSET "ISO-8859-1";
+a:link {
+	margin-left:10px;
+	color: #ff6600;
+	text-decoration: none;
+	
+}
+
+p {
+	top: 600px;
+	text-align: justify;
+	color: black;
+	font-size: 22px;
+	line-height:2;
+}
+
+.box{
+	
+	background-color: orange;
+    width: 300px;
+    border: 25px ;
+    padding-top:25px;
+    margin-left: 500px;
+	
+}
+table{
+	width:100%;
+	margin-top:20px;
+	height:75%;
+
+}
+td{
+	width:25%;
+	height:25%;
+	margin-top:50px;
+	text-align:center;
+}
+.Customize{
+	text-align:center;
+	margin-top:20px;
+}
