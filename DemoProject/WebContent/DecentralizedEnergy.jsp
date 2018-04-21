@@ -23,8 +23,11 @@ margin-top:20px;}
 margin-top:400px;
 text-align:center;}
 </style>
+<script src="//code.jquery.com/jquery-1.10.2.js"
+	type="text/javascript"></script>
 
 <script language=javascript>
+
 var AirConditioner=0;
 var AirCooler=0;
 var Computer=0;
@@ -53,6 +56,9 @@ var Mixer=0;
 var Grinder=0;
 var Motor=0;
 var MicrowaveOvan=0;
+var d=new Date();
+var date=d.getDate()+"."+d.getMonth()+"."+d.getFullYear();
+var name="<%=(String)session.getAttribute("username")%>";
 
 function airconditioner_on()
 {
@@ -464,27 +470,73 @@ document.getElementById("on_microwave").disabled=false;
 document.getElementById("off_microwave").disabled=true;
 alert("you have turned microwave ovan off");
 }
-request.setAttribute("Ac", AirConditioner);
 
 function totalvolts(){
-
 var total = AirConditioner + AirCooler + Computer + CeilingFan + InductionStove+ IronBox + LEDLamps + Dishwasher + ElectricWaterKettle
-+ ExhaustFan + FanHeater + Griller + HairDryer + Humidifier + LEDTubes + PedestalFan + Refrigerator + RiceCooker +
-SewingMachine + T_V + VacuumCleaner + WashingMachine + WaterHeater + WaterPurifier + Mixer + Grinder + Motor + MicrowaveOvan;
-if(total>720){
-alert("You power consumption has exceeded!! Please turn off some appliances!!");
-alert(total);}
-else if(total==0){
-alert("No appliances running");
-alert(total);}
-else{
-alert("your power consumption is normal");
-alert(total);
+			+ ExhaustFan + FanHeater + Griller + HairDryer + Humidifier + LEDTubes + PedestalFan + Refrigerator + RiceCooker +
+			SewingMachine + T_V + VacuumCleaner + WashingMachine + WaterHeater + WaterPurifier + Mixer + Grinder + Motor + MicrowaveOvan;
+			if(total>720){
+			alert("You power consumption has exceeded!! Please turn off some appliances!!");
+			alert(total);}
+			else if(total==0){
+			alert("No appliances running");
+			alert(total);}
+			else{
+			alert("your power consumption is normal");
+			alert(total);
+			var volts	=
+			
+			{	Date:date,
+				Username:name,
+				AirConditioner:AirConditioner,
+				AirCooler:AirCooler,
+				Computer:Computer,
+				Dishwasher:Dishwasher,
+				ElectricWaterKettle:ElectricWaterKettle,
+				ExhaustFan:ExhaustFan,
+				FanHeater:FanHeater,
+				Griller:Griller,
+				HairDryer:HairDryer,
+				Humidifier:Humidifier,
+				CeilingFan:CeilingFan,
+				InductionStove:InductionStove,
+				IronBox:IronBox,
+				LEDLamps:LEDLamps,
+				LEDTubes:LEDTubes,
+				PedestalFan:PedestalFan,
+				Refrigerator:Refrigerator,
+				RiceCooker:RiceCooker,
+				SewingMachine:SewingMachine,
+				Television:T_V,
+				VacuumCleaner:VacuumCleaner,
+				WashingMachine:WashingMachine,
+				WaterHeater:WaterHeater,
+				WaterPurifier:WaterPurifier,
+				Mixer:Mixer,
+				Grinder:Grinder,
+				Motor:Motor,
+				MicrowaveOvan:MicrowaveOvan
+			};
+			
+			$.ajax({
+				type:'GET',
+				url:'GenerateReport',
+				datatype:'JSON',
+				data:{
+				value : JSON.stringify(volts)
+			},
+			success:function(){
+				alert("Success");
+				},
+			error:function(){
+				alert("failure");}
+			});
+			}
+			
+			
 
-}
 }
 </script>
-
 </head>
 <body>
 <div id="top-links">
@@ -497,49 +549,20 @@ alert(total);
 <a href="index.html">Logout</a><br><br>
 <div class="getname">
 	<%
+	String uname=(String)session.getAttribute("username");
 	out.println("Welcome"+" "+session.getAttribute("username"));
  	session.setAttribute("username",session.getAttribute("username"));
  	%></div></div>
 <img src="/DemoProject/images/energy.png" ></img>
 <br><br>
 
+
 <%
-int AirConditioner, AirCooler, Computer,Dishwasher,ElectricWaterKettle,ExhaustFan, FanHeater,Griller,HairDryer,
-		Humidifier,CeilingFan, InductionStove, IronBox,LEDLamps, LEDTubes,PedestalFan, Refrigerator,RiceCooker,SewingMachine,
-		Television, VacuumCleaner,WashingMachine,WaterHeater, WaterPurifier,Mixer, Grinder,Motor, MicrowaveOvan;
-		AirConditioner=220;
-		AirCooler=120;
-		 Computer=60;
-		 Dishwasher=220;
-		 ElectricWaterKettle=220;
-		 ExhaustFan=120;
-		 FanHeater=120;
-		 Griller=220;
-		 HairDryer=120;
-		Humidifier=120;
-		CeilingFan=120;
-		InductionStove=220;
-		IronBox=120;
-		LEDLamps=40;
-		LEDTubes=40;
-		PedestalFan=120;
-		Refrigerator=220;
-		RiceCooker=220;
-		SewingMachine=120;
-		Television=120;
-		 VacuumCleaner=220;
-		 WashingMachine=220;
-		 WaterHeater=220;
-		 WaterPurifier=220;
-		 Mixer=120;
-		 Grinder=220;
-		 Motor=220;
-		 MicrowaveOvan=220;
 String username=(String)session.getAttribute("username");
 try{
 			Class.forName("com.mysql.jdbc.Driver");
 		    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/smarthome", "root","root");
-		    String sql = "select list_appliances.ImageName , appliances.Image from list_appliances inner join appliances on list_appliances.ImageName=appliances.ImageName where username='"+username+"' ";
+		    String sql = "select distinct list_appliances.ImageName , appliances.Image from list_appliances inner join appliances on list_appliances.ImageName=appliances.ImageName where username='"+username+"' ";
 		    PreparedStatement stmt = conn.prepareStatement(sql);
 		    ResultSet resultSet = stmt.executeQuery();%>
 		 	<div>
