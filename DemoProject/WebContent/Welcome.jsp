@@ -22,8 +22,8 @@
 <a href="index.html">Logout</a><br><br>
 <div class="getname">
 <%	
- 	out.println("Welcome"+" "+request.getAttribute("username"));
- 	session.setAttribute("username",request.getAttribute("username"));
+ 	out.println("Welcome"+" "+session.getAttribute("username"));
+ 	session.setAttribute("username",session.getAttribute("username"));
  	%></div>
  	</div>
 <img src="/DemoProject/images/energy.png" width=50% height=100  ></img>

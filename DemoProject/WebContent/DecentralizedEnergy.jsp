@@ -27,7 +27,8 @@ text-align:center;}
 	type="text/javascript"></script>
 
 <script language=javascript>
-
+var volts;
+var total=0;
 var AirConditioner=0;
 var AirCooler=0;
 var Computer=0;
@@ -62,10 +63,32 @@ var name="<%=(String)session.getAttribute("username")%>";
 
 function airconditioner_on()
 {
-AirConditioner=220;
-document.getElementById("on_airconditioner").disabled=true;
-document.getElementById("off_airconditioner").disabled=false;
-alert("you have turned Ac on");
+		totalvolts();
+			if(total>720){
+				document.getElementById("on_airconditioner").disabled=false;
+				document.getElementById("off_airconditioner").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on ac!!");
+				alert(total);
+			}
+			else{
+				AirConditioner=220;
+				totalvolts();
+				if(total>720){
+					document.getElementById("on_airconditioner").disabled=false;
+					document.getElementById("off_airconditioner").disabled=false;
+					alert("You power consumption has exceeded!! Cannot turn on ac!!");
+					AirConditioner=0;
+					alert(total);}
+				else{
+					document.getElementById("on_airconditioner").disabled=true;
+					document.getElementById("off_airconditioner").disabled=false;
+					alert("you have turned Ac on");
+					alert("your power consumption is normal");
+									alert(total);
+					addData();
+				}
+				
+			}
 }
 function airconditioner_off(){
 AirConditioner=0;
@@ -75,10 +98,29 @@ alert("you have turned Ac off");
 }
 function aircooler_on()
 {
-AirCooler=120;
-document.getElementById("on_aircooler").disabled=true;
-document.getElementById("off_aircooler").disabled=false;
-alert("you have turned Aircooler on");
+totalvolts();
+	if(total>720){
+			document.getElementById("on_aircooler").disabled=false;
+			document.getElementById("off_aircooler").disabled=false;
+			alert("You power consumption has exceeded!! Cannot turn on cooler!!");
+			alert(total);}
+			else{
+				AirCooler=120;
+				totalvolts();
+				if(total>720){
+					document.getElementById("on_aircooler").disabled=false;
+					document.getElementById("off_aircooler").disabled=false;
+					alert("You power consumption has exceeded!! Cannot turn on cooler!!");
+					AirCooler=0;
+					alert(total);}
+					else{
+				document.getElementById("on_aircooler").disabled=true;
+				document.getElementById("off_aircooler").disabled=false;
+				alert("you have turned AirCooler on");
+				alert("your power consumption is normal");
+								alert(total);
+				addData();}
+			}
 }
 function aircooler_off()
 {
@@ -90,12 +132,30 @@ alert("you have turned Aircooler off");
 
 function computer_on()
 {
-Computer=60;
-document.getElementById("on_computer").disabled=true;
-document.getElementById("off_computer").disabled=false;
-alert("you have turned computer on");
+	totalvolts();
+	if(total>720){
+			document.getElementById("on_computer").disabled=false;
+			document.getElementById("off_computer").disabled=false;
+			alert("You power consumption has exceeded!! Cannot turn on computer!!");
+			alert(total);}
+			else{
+				Computer=60;
+				totalvolts();
+				if(total>720){
+					document.getElementById("on_computer").disabled=false;
+					document.getElementById("off_computer").disabled=false;
+					alert("You power consumption has exceeded!! Cannot turn on computer!!");
+					Computer=0;
+					alert(total);}
+				else{
+				document.getElementById("on_computer").disabled=true;
+				document.getElementById("off_computer").disabled=false;
+				alert("you have turned computer on");
+				alert("your power consumption is normal");
+								alert(total);
+				addData();}
+		}
 }
-
 function computer_off()
 {
 Computer=0;
@@ -105,10 +165,29 @@ alert("you have turned computer off");
 }
 function dishwasher_on()
 {
-Dishwasher=220;
-document.getElementById("on_dishwasher").disabled=true;
-document.getElementById("off_dishwasher").disabled=false;
-alert("you have turned Dishwasher on");
+		totalvolts();
+		if(total>720){
+			document.getElementById("on_dishwasher").disabled=false;
+			document.getElementById("off_dishwasher").disabled=false;
+			alert("You power consumption has exceeded!! Cannot turn on Dishwasher!!");
+			alert(total);}
+			else{
+				Dishwasher=220;
+				totalvolts();
+				if(total>720){
+					document.getElementById("on_dishwasher").disabled=false;
+					document.getElementById("off_dishwasher").disabled=false;
+					alert("You power consumption has exceeded!! Cannot turn on Dishwasher!!");
+					Dishwasher=0;
+			alert(total);}
+			else{
+				document.getElementById("on_dishwasher").disabled=true;
+				document.getElementById("off_dishwasher").disabled=false;
+				alert("you have turned Dishwasher on");
+				alert("your power consumption is normal");
+								alert(total);
+				addData();}
+			}
 }
 function dishwasher_off()
 {
@@ -120,11 +199,30 @@ alert("you have turned Dishwasher off");
 
 function waterkettle_on()
 {
-ElectricWaterKettle=220;
-document.getElementById("on_waterkettle").disabled=true;
-document.getElementById("off_waterkettle").disabled=false;
-alert("you have turned WaterKettle on");
-}
+		totalvolts();
+		if(total>720){
+		document.getElementById("on_waterkettle").disabled=false;
+		document.getElementById("off_waterkettle").disabled=false;
+		alert("You power consumption has exceeded!! Cannot turn on WaterKettle!!");
+			alert(total);}
+			else{
+			ElectricWaterKettle=220;
+				totalvolts();
+				if(total>720){
+					document.getElementById("on_waterkettle").disabled=false;
+					document.getElementById("off_waterkettle").disabled=false;
+					alert("You power consumption has exceeded!! Cannot turn on WaterKettle!!");
+					ElectricWaterKettle=0;
+					alert(total);}
+			else{
+				document.getElementById("on_waterkettle").disabled=true;
+				document.getElementById("off_waterkettle").disabled=false;
+				alert("you have turned WaterKettle on");
+				alert("your power consumption is normal");
+								alert(total);
+				addData();}
+			}
+			}
 function waterkettle_off()
 {
 ElectricWaterKettle=0;
@@ -135,10 +233,29 @@ alert("you have turned WaterKettle off");
 
 function exhaustfan_on()
 {
-ExhaustFan=120;
-document.getElementById("on_exhaustfan").disabled=true;
-document.getElementById("off_exhaustfan").disabled=false;
-alert("you have turned ExhaustFan on");
+		totalvolts();
+			if(total>720){
+				document.getElementById("on_exhaustfan").disabled=false;
+				document.getElementById("off_exhaustfan").disabled=false;
+			alert("You power consumption has exceeded!! Cannot turn on Exhaustfan!!");
+			alert(total);}
+			else{
+				ExhaustFan=120;
+				totalvolts();
+				if(total>720){
+				document.getElementById("on_exhaustfan").disabled=false;
+				document.getElementById("off_exhaustfan").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on Exhaustfan!!");
+				ExhaustFan=0;
+				alert(total);}
+			else{
+				document.getElementById("on_exhaustfan").disabled=true;
+				document.getElementById("off_exhaustfan").disabled=false;
+				alert("you have turned ExhaustFan on");
+				alert("your power consumption is normal");
+				alert(total);
+				addData();}
+		}
 }
 function exhaustfan_off()
 {
@@ -150,10 +267,29 @@ alert("you have turned ExhaustFan off");
 
 function fanheater_on()
 {
-FanHeater=120;
-document.getElementById("on_fanheater").disabled=true;
-document.getElementById("off_fanheater").disabled=false;
-alert("you have turned FanHeater on");
+		totalvolts();
+				if(total>720){
+					document.getElementById("on_fanheater").disabled=false;
+					document.getElementById("off_fanheater").disabled=false;
+					alert("You power consumption has exceeded!! Cannot turn on Fanheater!!");
+					alert(total);}
+			else{
+					FanHeater=120;
+					totalvolts();
+					if(total>720){
+						document.getElementById("on_fanheater").disabled=false;
+						document.getElementById("off_fanheater").disabled=false;
+						alert("You power consumption has exceeded!! Cannot turn on Fanheater!!");
+						FanHeater=0;
+						alert(total);}
+					else{
+					document.getElementById("on_fanheater").disabled=true;
+					document.getElementById("off_fanheater").disabled=false;
+					alert("you have turned FanHeater on");
+					alert("your power consumption is normal");
+									alert(total);
+									addData();
+								}}
 }
 function fanheater_off()
 {
@@ -165,24 +301,64 @@ alert("you have turned FanHeater off");
 
 function griller_on()
 {
-Griller=220;
-document.getElementById("on_griller").disabled=true;
-document.getElementById("off_fanheater").disabled=false;
-alert("you have turned Griller on");
-}
+		totalvolts();
+				if(total>720){
+					document.getElementById("on_griller").disabled=false;
+					document.getElementById("off_fanheater").disabled=false;
+					alert("You power consumption has exceeded!! Cannot turn on Griller!!");
+					alert(total);}
+				else{
+					Griller=220;
+					totalvolts();
+					if(total>720){
+						document.getElementById("on_fanheater").disabled=false;
+						document.getElementById("off_fanheater").disabled=false;
+						alert("You power consumption has exceeded!! Cannot turn on Fanheater!!");
+						Griller=0;
+						alert(total);}
+					else{
+					document.getElementById("on_griller").disabled=true;
+					document.getElementById("off_fanheater").disabled=false;
+					alert("you have turned Griller on");
+					alert("your power consumption is normal");
+									alert(total);
+									addData();}
+					}
+	}
 function griller_off()
 {
 Griller=0;
 document.getElementById("on_griller").disabled=false;
 document.getElementById("off_griller").disabled=true;
 alert("you have turned Griller off");
+
 }
 function hairdryer_on()
 {
-HairDryer=120;
-document.getElementById("on_hairdryer").disabled=true;
-document.getElementById("off_hairdryer").disabled=false;
-alert("you have turned hairdryer on");
+		totalvolts();
+				if(total>720){
+					document.getElementById("on_hairdryer").disabled=true;
+					document.getElementById("off_hairdryer").disabled=false;
+					alert("You power consumption has exceeded!! Cannot turn on HairDryer!!");
+					alert(total);}
+				else{
+					HairDryer=120;
+					totalvolts();
+					if(total>720){
+					document.getElementById("on_hairdryer").disabled=true;
+					document.getElementById("off_hairdryer").disabled=false;
+					alert("You power consumption has exceeded!! Cannot turn on HairDryer!!");
+					alert(total);
+					HairDryer=0;}
+				else{
+					document.getElementById("on_hairdryer").disabled=true;
+					document.getElementById("off_hairdryer").disabled=false;
+					alert("you have turned hairdryer on");
+					alert("your power consumption is normal");
+									
+									alert(total);
+									addData();}
+								}
 }
 
 function hairdryer_off()
@@ -194,24 +370,65 @@ alert("you have turned hairdryer off");
 }
 function humidifier_on()
 {
-Humidifier=120;
-document.getElementById("on_humidifier").disabled=true;
-document.getElementById("off_humidifier").disabled=false;
-alert("you have turned Humidifier on");
+			totalvolts();
+				if(total>720){
+					document.getElementById("on_humidifier").disabled=true;
+					document.getElementById("off_humidifier").disabled=false;
+					alert("You power consumption has exceeded!! Cannot turn on Humidifier!!");
+					alert(total);}
+				else{	
+					Humidifier=120;
+					totalvolts();
+					if(total>720){
+					document.getElementById("on_humidifier").disabled=true;
+					document.getElementById("off_humidifier").disabled=false;
+					alert("You power consumption has exceeded!! Cannot turn on Humidifier!!");
+					Humidifier=0;
+					alert(total);}
+				else{	
+					document.getElementById("on_humidifier").disabled=true;
+					document.getElementById("off_humidifier").disabled=false;
+					alert("you have turned Humidifier on");
+					alert("your power consumption is normal");
+									
+									alert(total);
+									addData();
+							}}
 }
 function humidifier_off()
 {
-Humidifier=0;
-document.getElementById("on_humidifier").disabled=false;
-document.getElementById("off_humidifier").disabled=true;
-alert("you have turned Humidifier off");
+	Humidifier=0;
+	document.getElementById("on_humidifier").disabled=false;
+	document.getElementById("off_humidifier").disabled=true;
+	alert("you have turned Humidifier off");
+
 }
 function ceilingfan_on()
 {
-CeilingFan=120;
-document.getElementById("on_fan").disabled=true;
-document.getElementById("off_fan").disabled=false;
-alert("you have turned fan on");
+totalvolts();
+			if(total>720){
+					document.getElementById("on_fan").disabled=false;
+					document.getElementById("off_fan").disabled=false;
+					alert("You power consumption has exceeded!! Cannot turn on fan!!");
+					alert(total);}
+			else{
+					CeilingFan=120;
+					totalvolts();
+					if(total>720){
+						document.getElementById("on_fan").disabled=false;
+						document.getElementById("off_fan").disabled=false;
+						alert("You power consumption has exceeded!! Cannot turn on fan!!");
+						CeilingFan=0;
+						alert(total);}
+			else{
+					document.getElementById("on_fan").disabled=true;
+					document.getElementById("off_fan").disabled=false;
+					alert("you have turned fan on");
+					alert("your power consumption is normal");
+									
+									alert(total);
+									addData();}
+								}
 }
 function ceilingfan_off()
 {
@@ -222,10 +439,29 @@ alert("you have turned fan off");
 }
 function inductionstove_on()
 {
-InductionStove=220;
-document.getElementById("on_inductionstove").disabled=true;
-document.getElementById("off_inductionstove").disabled=false;
-alert("you have turned InductionStove on");
+		totalvolts();
+				if(total>720){
+					document.getElementById("on_inductionstove").disabled=false;
+				document.getElementById("off_inductionstove").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on inductionstove!!");
+							alert(total);}
+				else{
+					InductionStove=220;
+					totalvolts();
+					if(total>720){
+					document.getElementById("on_inductionstove").disabled=false;
+				document.getElementById("off_inductionstove").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on inductionstove!!");
+							alert(total);}
+				else{
+					document.getElementById("on_inductionstove").disabled=true;
+					document.getElementById("off_inductionstove").disabled=false;
+					alert("you have turned InductionStove on");
+					alert("your power consumption is normal");
+									
+									alert(total);
+									addData();
+									}}
 }
 function inductionstove_off()
 {
@@ -238,10 +474,30 @@ alert("you have turned InductionStove off");
 
 function ironbox_on()
 {
-IronBox=120;
-document.getElementById("on_ironbox").disabled=true;
-document.getElementById("off_ironbox").disabled=false;
-alert("you have turned ironbox on");
+		totalvolts();
+				if(total>720){
+					document.getElementById("on_ironbox").disabled=false;
+					document.getElementById("off_ironbox").disabled=false;
+					alert("You power consumption has exceeded!! Cannot turn on ironbox!!");
+							alert(total);}
+				else{
+					IronBox=120;
+					totalvolts();
+					if(total>720){
+					document.getElementById("on_ironbox").disabled=false;
+					document.getElementById("off_ironbox").disabled=false;
+					alert("You power consumption has exceeded!! Cannot turn on ironbox!!");
+					IronBox=0;
+							alert(total);}
+				else{
+					document.getElementById("on_ironbox").disabled=true;
+					document.getElementById("off_ironbox").disabled=false;
+					alert("you have turned ironbox on");
+					alert("your power consumption is normal");
+									
+									alert(total);
+									addData();
+								}}
 }
 
 function ironbox_off()
@@ -253,10 +509,30 @@ alert("you have turned ironbox off");
 }
 function ledlamps_on()
 {
-LEDLamps=40;
-document.getElementById("on_ledlamps").disabled=true;
-document.getElementById("off_ledlamps").disabled=false;
-alert("you have turned lamps on");
+totalvolts();
+			if(total>720){
+				document.getElementById("on_ledlamps").disabled=false;
+				document.getElementById("off_ledlamps").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on lamps!!");
+						alert(total);}
+			else{
+				LEDLamps=40;
+				totalvolts();
+				if(total>720){
+					document.getElementById("on_ledlamps").disabled=false;
+					document.getElementById("off_ledlamps").disabled=false;
+					alert("You power consumption has exceeded!! Cannot turn on lamps!!");
+					LEDLamps=0;
+							alert(total);}
+			else{
+				document.getElementById("on_ledlamps").disabled=true;
+				document.getElementById("off_ledlamps").disabled=false;
+				alert("you have turned lamps on");
+				alert("your power consumption is normal");
+								
+								alert(total);
+								addData();
+							}}
 }
 function ledlamps_off()
 {
@@ -264,13 +540,34 @@ LEDLamps=0;
 document.getElementById("on_ledlamps").disabled=false;
 document.getElementById("off_ledlamps").disabled=true;
 alert("you have turned lamps off");
+
 }
 function ledtubes_on()
 {
-LEDTubes=40;
-document.getElementById("on_ledtubes").disabled=true;
-document.getElementById("off_ledtubes").disabled=false;
-alert("you have turned LED tubes  on");
+	totalvolts();
+			if(total>720){
+				document.getElementById("on_ledtubes").disabled=false;
+				document.getElementById("off_ledtubes").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on LED tubes!!");
+							alert(total);}
+			else{
+				LEDTubes=40;
+				totalvolts();
+				if(total>720){
+				document.getElementById("on_ledtubes").disabled=false;
+				document.getElementById("off_ledtubes").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on LED tubes!!");
+				LEDTubes=0;
+							alert(total);}
+			else{
+				document.getElementById("on_ledtubes").disabled=true;
+				document.getElementById("off_ledtubes").disabled=false;
+				alert("you have turned LED tubes  on");
+				alert("your power consumption is normal");
+								
+								alert(total);
+								addData();}
+								}
 }
 function ledtubes_off()
 {
@@ -281,10 +578,29 @@ alert("you have turned LED tubes  off");
 }
 function pedestalfan_on()
 {
-PedestalFan=120;
-document.getElementById("on_pedestalfan").disabled=true;
-document.getElementById("off_pedestalfan").disabled=false;
-alert("you have turned Pedestal fan on");
+	totalvolts();
+			if(total>720){
+				document.getElementById("on_pedestalfan").disabled=false;
+				document.getElementById("off_pedestalfan").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on Pedestal fan!!");
+				alert(total);}
+			else{
+				PedestalFan=120;
+				totalvolts();
+				if(total>720){
+				document.getElementById("on_pedestalfan").disabled=false;
+				document.getElementById("off_pedestalfan").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on Pedestal fan!!");
+				PedestalFan=0;
+				alert(total);}
+			else{
+				document.getElementById("on_pedestalfan").disabled=true;
+				document.getElementById("off_pedestalfan").disabled=false;
+				alert("you have turned Pedestal fan on");
+				alert("your power consumption is normal");
+								
+								alert(total);
+								addData();}}
 }
 function pedestalfan_off()
 {
@@ -295,10 +611,29 @@ alert("you have turned Pedestal fan off");
 }
 function fridge_on()
 {
-Refrigerator=220;
-document.getElementById("on_fridge").disabled=true;
-document.getElementById("off_fridge").disabled=false;
-alert("you have turned Fridge on");
+	totalvolts();
+			if(total>720){
+				document.getElementById("on_fridge").disabled=false;
+				document.getElementById("off_fridge").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on Fridge!!");
+						alert(total);}
+			else{
+				Refrigerator=220;
+				totalvolts();
+				if(total>720){
+					document.getElementById("on_fridge").disabled=false;
+					document.getElementById("off_fridge").disabled=false;
+					alert("You power consumption has exceeded!! Cannot turn on Fridge!!");
+					Refrigerator=0;
+						alert(total);}
+			else{
+				document.getElementById("on_fridge").disabled=true;
+				document.getElementById("off_fridge").disabled=false;
+				alert("you have turned Fridge on");
+				alert("your power consumption is normal");
+								
+								alert(total);
+								addData();}}
 }
 function fridge_off()
 {
@@ -311,10 +646,30 @@ alert("you have turned Fridge off");
 
 function ricecooker_on()
 {
-RiceCooker=220;
-document.getElementById("on_ricecooker").disabled=true;
-document.getElementById("off_ricecooker").disabled=false;
-alert("you have turned rice cooker on");
+	totalvolts();
+		if(total>720){
+			document.getElementById("on_ricecooker").disabled=false;
+			document.getElementById("off_ricecooker").disabled=false;
+			alert("You power consumption has exceeded!! Cannot turn on rice cooker!!");
+					alert(total);}
+			else{
+				RiceCooker=220;
+				totalvolts();
+				if(total>720){
+				document.getElementById("on_ricecooker").disabled=false;
+				document.getElementById("off_ricecooker").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on rice cooker!!");
+				RiceCooker=0;
+						alert(total);}
+			else{
+				
+				document.getElementById("on_ricecooker").disabled=true;
+				document.getElementById("off_ricecooker").disabled=false;
+				alert("you have turned rice cooker on");
+				alert("your power consumption is normal");
+								
+								alert(total);
+								addData();}}
 }
 function ricecooker_off()
 {
@@ -326,10 +681,30 @@ alert("you have turned rice cooker off");
 
 function sewingmachine_on()
 {
-SewingMachine=120;
-document.getElementById("on_sewingmachine").disabled=true;
-document.getElementById("off_sewingmachine").disabled=false;
-alert("you have turned sewing machine on");
+	totalvolts();
+		if(total>720){
+			document.getElementById("on_sewingmachine").disabled=false;
+			document.getElementById("off_sewingmachine").disabled=false;
+			alert("You power consumption has exceeded!! Cannot turn on sewing machine!!");
+					alert(total);}
+			else{
+				SewingMachine=120;
+				totalvolts();
+				if(total>720){
+			document.getElementById("on_sewingmachine").disabled=false;
+			document.getElementById("off_sewingmachine").disabled=false;
+			alert("You power consumption has exceeded!! Cannot turn on sewing machine!!");
+			SewingMachine=0;
+					alert(total);}
+			else{
+				document.getElementById("on_sewingmachine").disabled=true;
+				document.getElementById("off_sewingmachine").disabled=false;
+				alert("you have turned sewing machine on");
+				alert("your power consumption is normal");
+								
+								alert(total);
+								addData();
+							}}
 }
 function sewingmachine_off()
 {
@@ -340,10 +715,29 @@ alert("you have turned sewing machine off");
 }
 function television_on()
 {
-T_V=120;
-document.getElementById("on_television").disabled=true;
-document.getElementById("off_television").disabled=false;
-alert("you have turned television on");
+	totalvolts();
+			if(total>720){
+				document.getElementById("on_television").disabled=false;
+				document.getElementById("off_television").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on television!!");
+						alert(total);}
+			else{
+				T_V=120;
+				totalvolts();
+				if(total>720){
+				document.getElementById("on_television").disabled=false;
+				document.getElementById("off_television").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on television!!");
+				T_V=0;
+						alert(total);}
+			else{
+				document.getElementById("on_television").disabled=true;
+				document.getElementById("off_television").disabled=false;
+				alert("you have turned television on");
+				alert("your power consumption is normal");
+								
+								alert(total);
+								addData();}}
 }
 function television_off()
 {
@@ -355,10 +749,29 @@ alert("you have turned television off");
 
 function vacuumcleaner_on()
 {
-VacuumCleaner=220;
-document.getElementById("on_vacuumcleaner").disabled=true;
-document.getElementById("off_vacuumcleaner").disabled=false;
-alert("you have turned vacuum cleaner on");
+	totalvolts();
+			if(total>720){
+				document.getElementById("on_vacuumcleaner").disabled=false;
+				document.getElementById("off_vacuumcleaner").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on vacuum cleaner!!");
+						alert(total);}
+			else{
+				VacuumCleaner=220;
+				totalvolts();
+				if(total>720){
+				document.getElementById("on_vacuumcleaner").disabled=false;
+				document.getElementById("off_vacuumcleaner").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on vacuum cleaner!!");
+				VacuumCleaner=0;
+						alert(total);}
+			else{
+				document.getElementById("on_vacuumcleaner").disabled=true;
+				document.getElementById("off_vacuumcleaner").disabled=false;
+				alert("you have turned vacuum cleaner on");
+				alert("your power consumption is normal");
+								
+								alert(total);
+								addData();}}
 }
 function vacuumcleaner_off()
 {
@@ -369,10 +782,29 @@ alert("you have turned vacuum cleaner off");
 }
 function washingmachine_on()
 {
-WashingMachine=220;
-document.getElementById("on_washingmachine").disabled=true;
-document.getElementById("off_washingmachine").disabled=false;
-alert("you have turned washing machine on");
+	totalvolts();
+		if(total>720){
+			document.getElementById("on_washingmachine").disabled=false;
+			document.getElementById("off_washingmachine").disabled=false;
+			alert("You power consumption has exceeded!! Cannot turn on washing machine!!");
+					alert(total);}
+			else{
+				WashingMachine=220;
+				totalvolts();
+				if(total>720){
+			document.getElementById("on_washingmachine").disabled=false;
+			document.getElementById("off_washingmachine").disabled=false;
+			alert("You power consumption has exceeded!! Cannot turn on washing machine!!");
+			WashingMachine=0;
+					alert(total);}
+			else{
+				document.getElementById("on_washingmachine").disabled=true;
+				document.getElementById("off_washingmachine").disabled=false;
+				alert("you have turned washing machine on");
+				alert("your power consumption is normal");
+								
+								alert(total);
+								addData();}}
 }
 function washingmachine_off()
 {
@@ -384,10 +816,30 @@ alert("you have turned washing machine off");
 
 function waterheater_on()
 {
-WaterHeater=220;
-document.getElementById("on_waterheater").disabled=true;
-document.getElementById("off_waterheater").disabled=false;
-alert("you have turned water heater on");
+	totalvolts();
+		if(total>720){
+			document.getElementById("on_waterheater").disabled=false;
+			document.getElementById("off_waterheater").disabled=false;
+			alert("You power consumption has exceeded!! Cannot turn on water heater!!");
+					alert(total);}
+			else{
+	
+				WaterHeater=220;
+				totalvolts();
+				if(total>720){
+			document.getElementById("on_waterheater").disabled=false;
+			document.getElementById("off_waterheater").disabled=false;
+			alert("You power consumption has exceeded!! Cannot turn on water heater!!");
+			WaterHeater=0;
+					alert(total);}
+			else{
+				document.getElementById("on_waterheater").disabled=true;
+				document.getElementById("off_waterheater").disabled=false;
+				alert("you have turned water heater on");
+				alert("your power consumption is normal");
+								
+								alert(total);
+								addData();}}
 }
 function waterheater_off()
 {
@@ -398,10 +850,29 @@ alert("you have turned water heater off");
 }
 function waterpurifier_on()
 {
-WaterPurifier=220;
-document.getElementById("on_waterpurifier").disabled=true;
-document.getElementById("off_waterpurifier").disabled=false;
-alert("you have turned water purifier on");
+	totalvolts();
+		if(total>720){
+				document.getElementById("on_waterpurifier").disabled=false;
+				document.getElementById("off_waterpurifier").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on water purifier!!");
+						alert(total);}
+			else{
+				WaterPurifier=220;
+				totalvolts();
+				if(total>720){
+				document.getElementById("on_waterpurifier").disabled=false;
+				document.getElementById("off_waterpurifier").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on water purifier!!");
+				WaterPurifier=0;
+						alert(total);}
+			else{
+				document.getElementById("on_waterpurifier").disabled=true;
+				document.getElementById("off_waterpurifier").disabled=false;
+				alert("you have turned water purifier on");
+				alert("your power consumption is normal");
+								
+								alert(total);
+								addData();}}
 }
 
 function waterpurifier_off()
@@ -413,10 +884,29 @@ alert("you have turned water purifier off");
 }
 function mixer_on()
 {
-Mixer=120;
-document.getElementById("on_mixer").disabled=true;
-document.getElementById("off_mixer").disabled=false;
-alert("you have turned mixer on");
+totalvolts();
+	if(total>720){
+			document.getElementById("on_mixer").disabled=false;
+			document.getElementById("off_mixer").disabled=false;
+			alert("You power consumption has exceeded!! Cannot turn on mixer!!");
+					alert(total);}
+			else{
+				Mixer=120;
+				totalvolts();
+				if(total>720){
+			document.getElementById("on_mixer").disabled=false;
+			document.getElementById("off_mixer").disabled=false;
+			alert("You power consumption has exceeded!! Cannot turn on mixer!!");
+			Mixer=0;
+					alert(total);}
+			else{
+				document.getElementById("on_mixer").disabled=true;
+				document.getElementById("off_mixer").disabled=false;
+				alert("you have turned mixer on");
+				alert("your power consumption is normal");
+								
+								alert(total);
+								addData();}}
 }
 function mixer_off()
 {
@@ -428,10 +918,29 @@ alert("you have turned mixer off");
 
 function grinder_on()
 {
-Grinder=220;
-document.getElementById("on_grinder").disabled=true;
-document.getElementById("off_grinder").disabled=false;
-alert("you have turned grinder on");
+	totalvolts();
+		if(total>720){
+				document.getElementById("on_grinder").disabled=false;
+				document.getElementById("off_grinder").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on grinder!!");
+							alert(total);}
+			else{
+				Grinder=220;
+				totalvolts();
+				if(total>720){
+				document.getElementById("on_grinder").disabled=false;
+				document.getElementById("off_grinder").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on grinder!!");
+				Grinder=0;
+							alert(total);}
+			else{
+				document.getElementById("on_grinder").disabled=true;
+				document.getElementById("off_grinder").disabled=false;
+				alert("you have turned grinder on");
+				alert("your power consumption is normal");
+								
+								alert(total);
+								addData();}}
 }
 function grinder_off()
 {
@@ -443,10 +952,29 @@ alert("you have turned grinder off");
 
 function motor_on()
 {
-Motor=220;
-document.getElementById("on_motor").disabled=true;
-document.getElementById("off_motor").disabled=false;
-alert("you have turned motor on");
+	totalvolts();
+		if(total>720){
+				document.getElementById("on_motor").disabled=false;
+				document.getElementById("off_motor").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on computer!!");
+						alert(total);}
+			else{
+				Motor=220;
+				totalvolts();
+				if(total>720){
+				document.getElementById("on_motor").disabled=false;
+				document.getElementById("off_motor").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on computer!!");
+				Motor=0;
+						alert(total);}
+			else{
+				document.getElementById("on_motor").disabled=true;
+				document.getElementById("off_motor").disabled=false;
+				alert("you have turned motor on");
+				alert("your power consumption is normal");
+								
+								alert(total);
+								addData();}}
 }
 function motor_off()
 {
@@ -458,10 +986,29 @@ alert("you have turned motor off");
 
 function microwave_on()
 {
-MicrowaveOvan=220;
-document.getElementById("on_microwave").disabled=true;
-document.getElementById("off_microwave").disabled=false;
-alert("you have turned microwave ovan on");
+	totalvolts();
+			if(total>720){
+				document.getElementById("on_microwave").disabled=false;
+				document.getElementById("off_microwave").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on computer!!");
+						alert(total);}
+			else{
+				MicrowaveOvan=220;
+				totalvolts();
+				if(total>720){
+				document.getElementById("on_microwave").disabled=false;
+				document.getElementById("off_microwave").disabled=false;
+				alert("You power consumption has exceeded!! Cannot turn on computer!!");
+				MicrowaveOvan=0;
+						alert(total);}
+			else{
+				document.getElementById("on_microwave").disabled=true;
+				document.getElementById("off_microwave").disabled=false;
+				alert("you have turned microwave ovan on");
+				alert("your power consumption is normal");
+								
+								alert(total);
+								addData();}}
 }
 function microwave_off()
 {
@@ -472,19 +1019,16 @@ alert("you have turned microwave ovan off");
 }
 
 function totalvolts(){
-var total = AirConditioner + AirCooler + Computer + CeilingFan + InductionStove+ IronBox + LEDLamps + Dishwasher + ElectricWaterKettle
+	total = AirConditioner + AirCooler + Computer + CeilingFan + InductionStove+ IronBox + LEDLamps + Dishwasher + ElectricWaterKettle
 			+ ExhaustFan + FanHeater + Griller + HairDryer + Humidifier + LEDTubes + PedestalFan + Refrigerator + RiceCooker +
 			SewingMachine + T_V + VacuumCleaner + WashingMachine + WaterHeater + WaterPurifier + Mixer + Grinder + Motor + MicrowaveOvan;
-			if(total>720){
-			alert("You power consumption has exceeded!! Please turn off some appliances!!");
-			alert(total);}
-			else if(total==0){
-			alert("No appliances running");
-			alert(total);}
-			else{
-			alert("your power consumption is normal");
 			alert(total);
-			var volts	=
+			}
+			
+			
+			
+			function addData(){
+			volts	=
 			
 			{	Date:date,
 				Username:name,
@@ -535,7 +1079,7 @@ var total = AirConditioner + AirCooler + Computer + CeilingFan + InductionStove+
 			
 			
 
-}
+
 </script>
 </head>
 <body>
@@ -687,9 +1231,11 @@ try{
 		    <%}%>
 		    </div>
 		    <br>
-		    <div id="tab"><table><tr><td>Total Voltage</td></tr>
+		   
+			<div id="tab"><table><tr><td>Total Voltage</td></tr>
+			<tr><td></td></tr>
 		   <tr><td><input type=submit name="submit" value="submit" onclick="totalvolts()"></td></tr></table>
-		   </div>
+		  </div>
 		    <%}catch(Exception e)
 		    {
 		  	out.println(e.getMessage());

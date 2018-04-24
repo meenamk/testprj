@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class LoginValidation
@@ -48,7 +49,8 @@ public class LoginValidation extends HttpServlet {
 				ResultSet rs=ps.executeQuery();
 				if(rs.next()){
 					String Name = rs.getString(1);
-					request.setAttribute("username", Name);
+					HttpSession session = request.getSession();
+					session.setAttribute("username", Name);
 					RequestDispatcher rd=request.getRequestDispatcher("Welcome.jsp");
 					rd.forward(request, response);
 				}
